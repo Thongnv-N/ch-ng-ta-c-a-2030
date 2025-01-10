@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiệu ứng trái tim</title>
+    <style>
+        /* Đặt ảnh nền */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://th.bing.com/th/id/R.1dc187e2a2ea8d3b8af069dd351ce027?rik=2d0jOCIhBlcBAQ&pid=ImgRaw&r=0') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Định dạng đoạn văn */
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 10; /* Đảm bảo đoạn văn luôn nằm trên */
+        }
+
+        .message h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .message p {
+            font-size: 1.2rem;
+        }
+
+        /* Hiệu ứng trái tim */
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: translate(-50%, -50%) rotate(45deg); /* Xoay vuông thành trái tim */
+            animation: floatDown 6s ease-in-out infinite;
+            z-index: 20; /* Đảm bảo hiệu ứng trái tim nằm trên video */
+        }
+
+        /* Tạo hình trái tim bằng 2 hình tròn và hình vuông */
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%; /* Làm tròn */
+        }
+
+        .heart::before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -25px;
+            top: 0;
+        }
+
+        /* Hiệu ứng di chuyển từ trên xuống xa hơn */
+        @keyframes floatDown {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -500px) rotate(45deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, 0px) rotate(45deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, 500px) rotate(45deg);
+            }
+        }
+
+        /* Định dạng cho video YouTube */
+        .video-container {
+            position: fixed;
+            top: 10%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            z-index: 5; /* Đảm bảo video nằm dưới các thành phần khác */
+            opacity: 0.5; /* Làm video mờ đi */
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Đoạn văn -->
+    <div class="message">
+        <h1>Gửi đến người anh yêu</h1>
+        <p>Cảm ơn em vì đã đồng hành và tha thứ cho anh. Anh hứa sẽ mãi yêu thương và xây dựng tương lai tươi đẹp cùng em.</p>
+    </div>
+
+    <!-- Hiệu ứng trái tim -->
+    <div class="heart" style="top: 10%; left: 30%; animation-delay: 0s;"></div>
+    <div class="heart" style="top: 10%; left: 50%; animation-delay: 2s;"></div>
+    <div class="heart" style="top: 10%; left: 70%; animation-delay: 4s;"></div>
+
+    <!-- Video YouTube -->
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/rym-6cROUwk?autoplay=1&mute=0" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</body>
+</html>
